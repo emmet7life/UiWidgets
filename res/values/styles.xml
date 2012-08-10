@@ -13,7 +13,7 @@
  See the License for the specific language governing permissions and
  limitations under the License.
 -->
-<resources>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
 
     <!-- Master style -->
     <style name="UiWidgets" />
@@ -27,7 +27,9 @@
     </style>
 
     <!-- Theme styles -->
-    <style name="UiWidgets.Theme" />
+    <style name="UiWidgets.Theme">
+        <item name="android:dialogTheme">@style/UiWidgets.Theme.Dialog</item>
+    </style>
 
     <style name="UiWidgets.Theme.Dialog">
         <item name="android:backgroundDimEnabled">true</item>
