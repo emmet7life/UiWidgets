@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Scott Weeden-Moody
+ * Copyright 2013 Scott Weeden-Moody
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,18 +19,17 @@ package com.lillicoder.lib.uiwidgets.carousel;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 
 import com.lillicoder.lib.uiwidgets.R;
 
 /**
- * {@link View} that serves as a position indicator for {@link CarouselView}.
+ * View that serves as a position indicator for {@link CarouselView}.
  */
 public class CarouselIndicatorView extends FrameLayout {
 
-	private ImageView _indicator;
+	private ImageView mIndicator;
 	
 	public CarouselIndicatorView(Context context) {
 		this(context, null);
@@ -46,29 +45,29 @@ public class CarouselIndicatorView extends FrameLayout {
 		LayoutInflater inflater = LayoutInflater.from(context);
 		inflater.inflate(R.layout.view_carousel_indicator, this);
 		
-		this.initializeViewReferences();
+		initializeViewReferences();
 	}
 	
 	/**
 	 * Initializes child view references for this view.
 	 */
 	private void initializeViewReferences() {
-		this._indicator = 
-			(ImageView) this.findViewById(R.id.CarouselIndicatorView_indicator);
+		mIndicator = 
+			(ImageView) findViewById(R.id.CarouselIndicatorView_indicator);
 	}
 	
 	/**
 	 * Sets the view as active. When active, the active color state
 	 * is used for this indicator. When inactive, the inactive color state
 	 * is used for this indicator.
-	 * @param isActive <code>true</code> to set this indicator as active,
-	 * 				   <code>false</code> to set this indicator as inactive.
+	 * @param isActive {@code true} to set this indicator as active,
+	 * 				   {@code false} to set this indicator as inactive.
 	 */
 	public void setActive(boolean isActive) {
 		if (isActive)
-			this._indicator.setImageResource(R.drawable.carousel_indicator_active);
+			mIndicator.setImageResource(R.drawable.carousel_indicator_active);
 		else
-			this._indicator.setImageResource(R.drawable.carousel_indicator_inactive);
+			mIndicator.setImageResource(R.drawable.carousel_indicator_inactive);
 	}
 	
 }
