@@ -15,7 +15,7 @@
 -->
 <resources>
 
-    <dimen name="default_ruleSize">1dp</dimen>
+    <dimen name="rule">1dp</dimen>
     <dimen name="BaseDialogFragment_margin">10dp</dimen>
     <dimen name="BaseDialogFragment_titleMargin">8dp</dimen>
     <dimen name="BaseDialogFragment_titleTextSize">20sp</dimen>
