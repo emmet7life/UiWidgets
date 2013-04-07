@@ -1,6 +1,8 @@
-/gen
 /bin
+/gen
+/out
 .classpath
+.idea
 .project
 UiWidgets.iml
 proguard-project.txt
