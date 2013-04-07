@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Scott Weeden-Moody
+ * Copyright 2013 Scott Weeden-Moody
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,56 +22,51 @@ import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 
 import com.lillicoder.lib.uiwidgets.R;
 
 /**
- * {@link View} that displays a page-able set of items with item position indicators.
+ * View that displays a page-able set of items with item position indicators.
  */
 public class CarouselView extends FrameLayout {
 	
-	private PagerAdapter _pagerAdapter;
+	private PagerAdapter mPagerAdapter;
 	
-	private LinearLayout _indicatorsContainer;
-	private ViewPager _viewPager;
+	private LinearLayout mIndicatorsContainer;
+	private ViewPager mViewPager;
 	
 	/**
 	 * {@link OnPageChangeListener} that handles setting the correct carousel indicator
 	 * colors as views are paged.
 	 */
-	private OnPageChangeListener _indicatorChangeListener = new OnPageChangeListener() {
+	private OnPageChangeListener mIndicatorChangeListener = new OnPageChangeListener() {
 		@Override
 		public void onPageSelected(int position) {
 			int currentPosition = position;
-			int itemCount = 
-				CarouselView.this._pagerAdapter.getCount();
+			int itemCount = mPagerAdapter.getCount();
 			
-			// Get previous indicator position. If we are currently
-			// looking at the first item, we should loop to the last item.
+			// If we are currently looking at the first item, 
+			// we should loop to the last item
 			int previousPosition;
 			if (currentPosition == 0)
 				previousPosition = (itemCount - 1);
 			else
 				previousPosition = currentPosition - 1;
 			
-			// Get next indicator position. If we are currently
-			// looking at the last item, should should loop to the first item.
+			// If we are currently looking at the last item, 
+			// we should should loop to the first item.
 			int nextPosition;
 			if (currentPosition == itemCount - 1)
 				nextPosition = 0;
 			else
 				nextPosition = currentPosition + 1;
 			
-			// Update indicators states.
-			CarouselIndicatorView currentIndicator = 
-				CarouselView.this.getIndicator(position);
-			CarouselIndicatorView previousIndicator = 
-				CarouselView.this.getIndicator(previousPosition);
-			CarouselIndicatorView nextIndicator = 
-				CarouselView.this.getIndicator(nextPosition);
+			// Update indicator state
+			CarouselIndicatorView currentIndicator = getIndicator(position);
+			CarouselIndicatorView previousIndicator = getIndicator(previousPosition);
+			CarouselIndicatorView nextIndicator = getIndicator(nextPosition);
 			if (currentIndicator != null)
 				currentIndicator.setActive(true);
 			if (previousIndicator != null)
@@ -101,35 +96,35 @@ public class CarouselView extends FrameLayout {
 		LayoutInflater inflater = LayoutInflater.from(context);
 		inflater.inflate(R.layout.view_carousel, this);
 		
-		this.initializeViewReferences();
+		initializeViewReferences();
 		
-		// Attach the page change listener to handle carousel indicators.
-		this._viewPager.setOnPageChangeListener(this._indicatorChangeListener);
+		// Attach the page change listener to handle carousel indicators
+		mViewPager.setOnPageChangeListener(mIndicatorChangeListener);
 	}
 	
 	/**
 	 * Initializes child view references for this view.
 	 */
 	private void initializeViewReferences() {
-		this._indicatorsContainer = 
-			(LinearLayout) this.findViewById(R.id.CarouselView_indicatorsContainer);
-		this._viewPager = 
-			(ViewPager) this.findViewById(R.id.CarouselView_viewPager);
+		mIndicatorsContainer = 
+			(LinearLayout) findViewById(R.id.CarouselView_indicatorsContainer);
+		mViewPager = 
+			(ViewPager) findViewById(R.id.CarouselView_viewPager);
 	}
 
 	/**
-	 * Populates this carousel's indicators with the given number of indicators.
+	 * Populates this carousel with the given number of indicators.
 	 * @param count Number of item indicators to display.
 	 */
 	private void generateIndicators(int count) {
-		this._indicatorsContainer.removeAllViews();
+		mIndicatorsContainer.removeAllViews();
 		
 		for (int i = 0; i < count; i++) {
-			CarouselIndicatorView indicator = new CarouselIndicatorView(this.getContext());
+			CarouselIndicatorView indicator = new CarouselIndicatorView(getContext());
 			indicator.setActive(i == 0); // We should active the first item by default since the 
-										 // page change listener will not fire until paging occurs.
+										 // page change listener will not fire until paging occurs
 			
-			this._indicatorsContainer.addView(indicator);
+			mIndicatorsContainer.addView(indicator);
 		}
 	}
 	
@@ -137,10 +132,10 @@ public class CarouselView extends FrameLayout {
 	 * Gets the {@link CarouselIndicatorView} at the given position.
 	 * @param position Position of the indicator to get.
 	 * @return {@link CarouselIndicatorView} at the given position,
-	 * 		   <code>null</code> if there is no indicator at the given position.
+	 * 		   {@code null} if there is no indicator at the given position.
 	 */
 	private CarouselIndicatorView getIndicator(int position) {
-		return (CarouselIndicatorView) CarouselView.this._indicatorsContainer.getChildAt(position);
+		return (CarouselIndicatorView) mIndicatorsContainer.getChildAt(position);
 	}
 	
 	/**
@@ -148,10 +143,10 @@ public class CarouselView extends FrameLayout {
 	 * @param adapter Adapter to use.
 	 */
 	public void setPagerAdapter(PagerAdapter adapter) {
-		this._pagerAdapter = adapter;
+		mPagerAdapter = adapter;
 		
-		this._viewPager.setAdapter(adapter);
-		this.generateIndicators(adapter.getCount());
+		mViewPager.setAdapter(adapter);
+		generateIndicators(adapter.getCount());
 	}
 	
 }
