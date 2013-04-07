@@ -1,5 +1,6 @@
 /gen
 /bin
-UiWidgets.iml
 .classpath
 .project
+UiWidgets.iml
+proguard-project.txt
