@@ -18,18 +18,15 @@ package com.lillicoder.lib.uiwidgets.dialog;
 
 import android.app.Dialog;
 import android.content.DialogInterface;
-import android.content.DialogInterface.OnClickListener;
 import android.content.DialogInterface.OnDismissListener;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.LinearLayout;
 import android.widget.TextView;
-
 import com.lillicoder.lib.uiwidgets.R;
 
 /**
@@ -42,7 +39,6 @@ public abstract class BaseDialogFragment extends DialogFragment {
 
 	private TextView mTitle;
     private View mTitleRule;
-    private ViewGroup mButtonContainer;
 	private ViewGroup mContentContainer;
 	
 	private int mStyleResource;
@@ -50,15 +46,14 @@ public abstract class BaseDialogFragment extends DialogFragment {
 	private OnDismissListener mDismissListener;
 
 	/**
-	 * Instantiates this dialog with the default
-	 * dialog theme.
+	 * Instantiates this dialog with the default dialog theme.
 	 */
 	protected BaseDialogFragment() {
 		this(R.style.UiWidgets_Theme_Dialog);
 	}
 	
 	/**
-	 * Instantiates this dialog with the given theme.
+	 * Instantiates this dialog with the given theme resource.
 	 * @param themeResource Resource ID of the theme for this dialog.
 	 */
 	protected BaseDialogFragment(int themeResource) {
@@ -85,8 +80,6 @@ public abstract class BaseDialogFragment extends DialogFragment {
             (TextView) root.findViewById(R.id.BaseDialogFragment_title);
         mTitleRule =
             root.findViewById(R.id.BaseDialogFragment_titleRule);
-        mButtonContainer =
-            (ViewGroup) root.findViewById(R.id.BaseDialogFragment_buttonContainer);
 		mContentContainer = 
 			(ViewGroup) root.findViewById(R.id.BaseDialogFragment_contentContainer);
 
@@ -122,63 +115,12 @@ public abstract class BaseDialogFragment extends DialogFragment {
 	/**
 	 * Callback made after inflating this dialog's content layout. Use this method
 	 * to capture references to dialog content for later use. The given {@link ViewGroup}
-	 * is the parent container for dialog content inflated in {{@link #setContentView(int)}.
-	 * @param contentContainer Parent {@link ViewGroup} for content inflated in {@link #setContentView(int)}.
+	 * is the parent container for dialog content inflated in
+     * {@link #onCreateView(LayoutInflater, ViewGroup, Bundle)}.
+	 * @param contentContainer Parent container {@link ViewGroup}.
 	 */
 	protected abstract void onInitializeViewReferences(ViewGroup contentContainer);
-	
-	/**
-     * Adds a new {@link Button} to this dialog's button content area.
-     * @param buttonType Which type of button to add, can be one of
-     *                   {@link DialogInterface#BUTTON_POSITIVE},
-     *                   {@link DialogInterface#BUTTON_NEGATIVE},
-     *                   or {@link DialogInterface#BUTTON_NEUTRAL}.
-     * @param label Button text to display.
-     * @param clickListener {@link DialogInterface.OnClickListener} to receive callbacks
-     *                      when the button is clicked. Note that this dialog will dismiss
-     *                      on button click even if the given listener is null.
-     */
-    public void addButton(final int buttonType, CharSequence label, final OnClickListener clickListener) {
-        Button button = new Button(getActivity());
-        button.setTag(buttonType);
-        button.setText(label);
 
-        // This button should evenly fill layout space with any other button(s)
-        LinearLayout.LayoutParams params =
-            new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT);
-        params.weight = 1;
-
-        if (clickListener != null) {
-            button.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    clickListener.onClick(getDialog(), buttonType);
-                }
-            });
-        }
-
-        mButtonContainer.addView(button, params);
-
-        // The button container is hidden by default, make it visible now that we have content
-        mButtonContainer.setVisibility(View.VISIBLE);
-    }
-    
-    /**
-     * Adds a new {@link Button} to this dialog's button content area.
-     * @param buttonType Which type of button to add, can be one of
-     *                   {@link DialogInterface#BUTTON_POSITIVE},
-     *                   {@link DialogInterface#BUTTON_NEGATIVE},
-     *                   or {@link DialogInterface#BUTTON_NEUTRAL}.
-     * @param labelResourceId Resource ID of the text for the button.
-     * @param clickListener {@link DialogInterface.OnClickListener} to receive callbacks
-     *                      when the button is clicked. Note that this dialog will dismiss
-     *                      on button click even if the given listener is null.
-     */
-    public void addButton(int buttonType, int labelResourceId, final OnClickListener clickListener) {
-        String label = getString(labelResourceId);
-        addButton(buttonType, label, clickListener);
-    }
-    
     /**
      * Determines if this dialog fragment is currently showing.
      * @return true if showing, false otherwise.
@@ -197,7 +139,25 @@ public abstract class BaseDialogFragment extends DialogFragment {
         Dialog dialog = getDialog();
         dialog.setCanceledOnTouchOutside(cancel);
     }
-    
+
+    /**
+     * Sets this dialog's icon to the given icon resource. The icon
+     * is displayed to the left of this dialog's title.
+     * @param iconResourceId Resource ID of the icon to set.
+     */
+    public void setIcon(int iconResourceId) {
+        mTitle.setCompoundDrawablesWithIntrinsicBounds(iconResourceId, 0, 0, 0);
+    }
+
+    /**
+     * Sets this dialog's icon to the given icon {@link Drawable}. The icon
+     * is displayed to the left of this dialog's title.
+     * @param icon Icon to set.
+     */
+    public void setIcon(Drawable icon) {
+        mTitle.setCompoundDrawablesRelativeWithIntrinsicBounds(icon, null, null, null);
+    }
+
     /**
      * Sets the {@link OnDismissListener} to receive events when this dialog is dismissed.
      * @param listener Listener whose {@link OnDismissListener#onDismiss(DialogInterface)}
@@ -224,7 +184,7 @@ public abstract class BaseDialogFragment extends DialogFragment {
             mTitleRule.setVisibility(mTitleVisibility);
         }
     }
-    
+
     /**
      * Sets this dialog's title to the given string.
      * @param title Title to set.
