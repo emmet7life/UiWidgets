@@ -20,6 +20,7 @@ import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.content.DialogInterface.OnDismissListener;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.view.ContextThemeWrapper;
@@ -29,7 +30,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
 import com.lillicoder.lib.uiwidgets.R;
 
 /**
@@ -50,15 +50,14 @@ public abstract class BaseDialogFragment extends DialogFragment {
 	private OnDismissListener mDismissListener;
 
 	/**
-	 * Instantiates this dialog with the default
-	 * dialog theme.
+	 * Instantiates this dialog with the default dialog theme.
 	 */
 	protected BaseDialogFragment() {
 		this(R.style.UiWidgets_Theme_Dialog);
 	}
 	
 	/**
-	 * Instantiates this dialog with the given theme.
+	 * Instantiates this dialog with the given theme resource.
 	 * @param themeResource Resource ID of the theme for this dialog.
 	 */
 	protected BaseDialogFragment(int themeResource) {
@@ -122,8 +121,9 @@ public abstract class BaseDialogFragment extends DialogFragment {
 	/**
 	 * Callback made after inflating this dialog's content layout. Use this method
 	 * to capture references to dialog content for later use. The given {@link ViewGroup}
-	 * is the parent container for dialog content inflated in {{@link #setContentView(int)}.
-	 * @param contentContainer Parent {@link ViewGroup} for content inflated in {@link #setContentView(int)}.
+	 * is the parent container for dialog content inflated in
+     * {@link #onCreateView(LayoutInflater, ViewGroup, Bundle)}.
+	 * @param contentContainer Parent container {@link ViewGroup}.
 	 */
 	protected abstract void onInitializeViewReferences(ViewGroup contentContainer);
 	
@@ -197,7 +197,25 @@ public abstract class BaseDialogFragment extends DialogFragment {
         Dialog dialog = getDialog();
         dialog.setCanceledOnTouchOutside(cancel);
     }
-    
+
+    /**
+     * Sets this dialog's icon to the given icon resource. The icon
+     * is displayed to the left of this dialog's title.
+     * @param iconResourceId Resource ID of the icon to set.
+     */
+    public void setIcon(int iconResourceId) {
+        mTitle.setCompoundDrawablesWithIntrinsicBounds(iconResourceId, 0, 0, 0);
+    }
+
+    /**
+     * Sets this dialog's icon to the given icon {@link Drawable}. The icon
+     * is displayed to the left of this dialog's title.
+     * @param icon Icon to set.
+     */
+    public void setIcon(Drawable icon) {
+        mTitle.setCompoundDrawablesRelativeWithIntrinsicBounds(icon, null, null, null);
+    }
+
     /**
      * Sets the {@link OnDismissListener} to receive events when this dialog is dismissed.
      * @param listener Listener whose {@link OnDismissListener#onDismiss(DialogInterface)}
@@ -224,7 +242,7 @@ public abstract class BaseDialogFragment extends DialogFragment {
             mTitleRule.setVisibility(mTitleVisibility);
         }
     }
-    
+
     /**
      * Sets this dialog's title to the given string.
      * @param title Title to set.
