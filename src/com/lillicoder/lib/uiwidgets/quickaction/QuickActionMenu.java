@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Scott Weeden-Moody
+ * Copyright 2013 Scott Weeden-Moody
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,24 +16,19 @@
 
 package com.lillicoder.lib.uiwidgets.quickaction;
 
-import java.util.List;
-
-import junit.framework.Assert;
 import android.content.Context;
 import android.graphics.Rect;
 import android.graphics.drawable.BitmapDrawable;
-import android.view.Gravity;
-import android.view.LayoutInflater;
-import android.view.View;
+import android.view.*;
 import android.view.View.MeasureSpec;
-import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
-import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
-
 import com.lillicoder.lib.uiwidgets.R;
+import junit.framework.Assert;
+
+import java.util.List;
 
 /**
  * {@link View} that displays one or more {@link QuickActionItemView} as a popup menu.

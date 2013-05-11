@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Scott Weeden-Moody
+ * Copyright 2013 Scott Weeden-Moody
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,7 +16,6 @@
 
 package com.lillicoder.lib.uiwidgets.spinner;
 
-import junit.framework.Assert;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
@@ -26,8 +25,8 @@ import android.widget.BaseAdapter;
 import android.widget.FrameLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
-
 import com.lillicoder.lib.uiwidgets.R;
+import junit.framework.Assert;
 
 /**
  * {@link Spinner} whose list shows as a {@link PopupListView} anchored to the

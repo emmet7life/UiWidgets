@@ -15,7 +15,7 @@
  */
 
 /**
- * Copyright 2012 Scott Weeden-Moody
+ * Copyright 2013 Scott Weeden-Moody
  *
  * This file has been modified from the FragmentTabs.java sample provided in the framework.
  * This class was made stand alone and was modified to work across Honeycomb versions.
@@ -23,11 +23,6 @@
 
 package com.lillicoder.lib.uiwidgets.tabs;
 
-import java.util.LinkedHashMap; 
-import java.util.Map;
-import java.util.Map.Entry;
-
-import junit.framework.Assert;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -42,6 +37,11 @@ import android.widget.TabHost.OnTabChangeListener;
 import android.widget.TabHost.TabContentFactory;
 import android.widget.TabHost.TabSpec;
 import android.widget.TabWidget;
+import junit.framework.Assert;
+
+import java.util.LinkedHashMap;
+import java.util.Map;
+import java.util.Map.Entry;
 
 /**
  * Class that handles manipulation of a {@link TabHost} and a {@link ViewPager} in

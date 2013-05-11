@@ -15,7 +15,7 @@
  */
 
 /**
- * Copyright 2012 Scott Weeden-Moody
+ * Copyright 2013 Scott Weeden-Moody
  *
  * This file has been modified from the FragmentTabs.java sample provided in the framework.
  * This class has had its formatting and style changed to match other code in this library.
