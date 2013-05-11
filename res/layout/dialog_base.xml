@@ -34,16 +34,8 @@
 
     <FrameLayout
         android:id="@+id/BaseDialogFragment_contentContainer"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1" />
-    
-    <LinearLayout
-        android:id="@+id/BaseDialogFragment_buttonContainer"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="4dp"
-        android:orientation="horizontal"
-        android:visibility="gone" />
 
 </LinearLayout>
