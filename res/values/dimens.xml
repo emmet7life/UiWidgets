@@ -18,9 +18,5 @@
     <dimen name="rule">1dp</dimen>
     <dimen name="CarouselViewIndicator_margin">8dp</dimen>
     <dimen name="CarouselViewIndicator_size">10dp</dimen>
-    <dimen name="QuickActionMenu_contentMinimumWidth">250dp</dimen>
-    <dimen name="QuickActionMenu_ruleWidth">1dp</dimen>
-    <dimen name="QuickActionMenu_ruleHeight">48dp</dimen>
-    <dimen name="QuickActionMenuItem_margin">8dp</dimen>
 
 </resources>

@@ -17,17 +17,17 @@
 
     <!-- pressed & focused -->
     <item android:state_focused="true" android:state_pressed="true"><shape>
-            <solid android:color="@color/ListSelector_brightTeal" />
+            <solid android:color="@color/brightTeal" />
         </shape></item>
 
     <!-- pressed -->
     <item android:state_focused="false" android:state_pressed="true"><shape>
-            <solid android:color="@color/ListSelector_brightTeal" />
+            <solid android:color="@color/brightTeal" />
         </shape></item>
 
     <!-- focused -->
     <item android:state_focused="true" android:state_pressed="false"><shape>
-            <solid android:color="@color/ListSelector_teal" />
+            <solid android:color="@color/teal" />
         </shape></item>
 
     <!-- default -->

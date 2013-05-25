@@ -25,11 +25,11 @@
     <color name="teal">#ff234457</color>
     <color name="transparent">#00000000</color> <!-- first two digits are alpha; 00 for transparent, ff for opaque -->
     <color name="white">#ffffffff</color>
-    <color name="ListSelector_brightTeal">#376c8a</color>
-    <color name="ListSelector_teal">#234457</color>
+
+    <color name="brightTeal">#376c8a</color>
+    <color name="teal">#234457</color>
+
     <color name="CarouselIndicatorView_active">@color/red</color>
     <color name="CarouselIndicatorView_inactive">@color/offWhite</color>
-    <color name="QuickActionMenu_containerOutline">#7d7d7d</color>
-    <color name="QuickActionMenu_ruleBackground">#3b3b3b</color>
 
 </resources>

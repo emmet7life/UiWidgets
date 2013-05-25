@@ -18,12 +18,4 @@
     <!-- Master style -->
     <style name="UiWidgets" />
 
-    <!-- Animation styles -->
-    <style name="UiWidgets.Animation" />
-
-    <style name="UiWidgets.Animation.QuickActionMenu">
-        <item name="@android:windowEnterAnimation">@anim/fade_in_short</item>
-        <item name="@android:windowExitAnimation">@anim/fade_out_short</item>
-    </style>
-
 </resources>
