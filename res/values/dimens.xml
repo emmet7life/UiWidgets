@@ -16,9 +16,6 @@
 <resources>
 
     <dimen name="rule">1dp</dimen>
-    <dimen name="BaseDialogFragment_margin">10dp</dimen>
-    <dimen name="BaseDialogFragment_titleMargin">8dp</dimen>
-    <dimen name="BaseDialogFragment_titleTextSize">20sp</dimen>
     <dimen name="CarouselViewIndicator_margin">8dp</dimen>
     <dimen name="CarouselViewIndicator_size">10dp</dimen>
     <dimen name="QuickActionMenu_contentMinimumWidth">250dp</dimen>

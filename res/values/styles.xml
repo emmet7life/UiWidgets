@@ -13,7 +13,7 @@
  See the License for the specific language governing permissions and
  limitations under the License.
 -->
-<resources xmlns:android="http://schemas.android.com/apk/res/android">
+<resources>
 
     <!-- Master style -->
     <style name="UiWidgets" />
@@ -24,40 +24,6 @@
     <style name="UiWidgets.Animation.QuickActionMenu">
         <item name="@android:windowEnterAnimation">@anim/fade_in_short</item>
         <item name="@android:windowExitAnimation">@anim/fade_out_short</item>
-    </style>
-
-    <!-- Theme styles -->
-    <style name="UiWidgets.Theme">
-        <item name="android:dialogTheme">@style/UiWidgets.Theme.Dialog</item>
-    </style>
-
-    <style name="UiWidgets.Theme.Dialog">
-        <item name="android:backgroundDimEnabled">true</item>
-        <item name="android:textAppearance">@style/UiWidgets.TextAppearance.Dialog</item>
-        <item name="android:windowAnimationStyle">@android:style/Animation.Dialog</item>
-        <item name="android:windowBackground">@drawable/base_dialog_background</item>
-        <item name="android:windowContentOverlay">@null</item>
-        <item name="android:windowCloseOnTouchOutside">false</item>
-        <item name="android:windowFrame">@null</item>
-        <item name="android:windowIsFloating">true</item>
-        <item name="android:windowIsTranslucent">true</item>
-        <item name="android:windowNoTitle">true</item>
-        <item name="ruleColor">@color/white</item>
-    </style>
-
-    <style name="UiWidgets.TextAppearance" parent="android:style/TextAppearance" />
-
-    <style name="UiWidgets.TextAppearance.Dialog">
-        <item name="android:textColor">@color/white</item>
-        <item name="android:textSize">@dimen/BaseDialogFragment_titleTextSize</item>
-    </style>
-
-    <!-- Widget styles -->
-    <style name="UiWidgets.Widget" />
-
-    <style name="UiWidgets.Widget.DropdownSpinner">
-        <item name="android:textIsSelectable">false</item>
-        <item name="android:textStyle">bold</item>
     </style>
 
 </resources>

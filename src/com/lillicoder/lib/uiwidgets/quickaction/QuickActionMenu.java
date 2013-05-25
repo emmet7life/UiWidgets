@@ -77,7 +77,7 @@ public class QuickActionMenu {
 		// wrap its content, and close when touch events are dispatched outside of its 
 		// content region (achieved by setting focusable).
 		this._window = new PopupWindow(anchor.getContext());
-		this._window.setBackgroundDrawable(new BitmapDrawable());
+		this._window.setBackgroundDrawable(new BitmapDrawable(anchor.getContext().getResources()));
 		this._window.setContentView(this._root);
 		this._window.setFocusable(true);
 		this._window.setWidth(WindowManager.LayoutParams.WRAP_CONTENT);
@@ -172,7 +172,7 @@ public class QuickActionMenu {
 	
 	/**
 	 * Gets the {@link LinearLayout.LayoutParams} that defines quick action item rule sizing.
-	 * @return{@link LinearLayout.LayoutParams} that defines quick action item rule sizing.
+	 * @return {@link LinearLayout.LayoutParams} that defines quick action item rule sizing.
 	 */
 	protected LinearLayout.LayoutParams getQuickActionRuleLayoutParams() {
 		float ruleWidth = 
