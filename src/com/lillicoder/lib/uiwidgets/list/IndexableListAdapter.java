@@ -26,11 +26,70 @@ import java.util.List;
  */
 public abstract class IndexableListAdapter<K extends Comparable<K>, E> extends BaseExpandableListAdapter implements SectionIndexer {
 
-    private List<Object> mFlat;
-    private List<IndexableList<K, E>> mData;
+    private List<IndexableList<K, E>> mSections;
 
-    public IndexableListAdapter(List<IndexableList<K, E>> items) {
+    private Indexer<K, E> mIndexer;
 
+    /**
+     * Instantiates this adapter with the given {@link List} of {@link IndexableList}.
+     * @param sections List of indexable lists for this adapter,
+     *                 where each indexable list represents a section.
+     */
+    public IndexableListAdapter(List<IndexableList<K, E>> sections) {
+        mSections = sections;
+        mIndexer = new Indexer<K, E>(sections);
+    }
+
+    @Override
+    public E getChild(int groupPosition, int childPosition) {
+        IndexableList<K, E> section = getGroup(groupPosition);
+        return section.get(childPosition);
+    }
+
+    @Override
+    public long getChildId(int groupPosition, int childPosition) {
+        return childPosition;
+    }
+
+    @Override
+    public int getChildrenCount(int groupPosition) {
+        IndexableList<K, E> section = mSections.get(groupPosition);
+        return section.size();
+    }
+
+    @Override
+    public IndexableList<K, E> getGroup(int groupPosition) {
+        return mSections.get(groupPosition);
+    }
+
+    @Override
+    public int getGroupCount() {
+        return mSections.size();
+    }
+
+    @Override
+    public long getGroupId(int groupPosition) {
+        return groupPosition;
+    }
+
+    @Override
+    public int getPositionForSection(int section) {
+        return mIndexer.getPositionForSection(section);
+    }
+
+    @Override
+    public Object[] getSections() {
+        return mIndexer.getSections();
+    }
+
+    @Override
+    public int getSectionForPosition(int position) {
+        return mIndexer.getSectionForPosition(position);
+    }
+
+    @Override
+    public boolean isEmpty() {
+        return mSections.isEmpty();
     }
 
     private static class Indexer<K extends Comparable<K>, E> implements SectionIndexer {
