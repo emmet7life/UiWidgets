@@ -27,7 +27,6 @@
     <color name="white">#ffffffff</color>
 
     <color name="brightTeal">#376c8a</color>
-    <color name="teal">#234457</color>
 
     <color name="CarouselIndicatorView_active">@color/red</color>
     <color name="CarouselIndicatorView_inactive">@color/offWhite</color>
