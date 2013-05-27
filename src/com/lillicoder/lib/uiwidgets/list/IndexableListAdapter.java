@@ -88,6 +88,16 @@ public abstract class IndexableListAdapter<K extends Comparable<K>, E> extends B
     }
 
     @Override
+    public boolean hasStableIds() {
+        return false;
+    }
+
+    @Override
+    public boolean isChildSelectable(int groupPosition, int childPosition) {
+        return true;
+    }
+
+    @Override
     public boolean isEmpty() {
         return mSections.isEmpty();
     }
