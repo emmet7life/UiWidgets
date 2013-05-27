@@ -1,8 +1,9 @@
-package com.lillicoder.lib.uiwidgets.list;
+package com.lillicoder.lib.uiwidgets.widget;
 
 import android.util.Log;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.SectionIndexer;
+import com.lillicoder.lib.uiwidgets.list.IndexableList;
 import junit.framework.Assert;
 
 import java.util.Arrays;
@@ -11,7 +12,7 @@ import java.util.List;
 /**
  * <p>
  *     {@link BaseExpandableListAdapter} implementation that can support an
- *     arbitrary collection of {@link IndexableList}.
+ *     arbitrary collection of {@link com.lillicoder.lib.uiwidgets.list.IndexableList}.
  * </p>
  *
  * <p>
