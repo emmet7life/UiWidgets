@@ -6,8 +6,7 @@ import android.widget.SectionIndexer;
 import com.lillicoder.lib.uiwidgets.list.IndexableList;
 import junit.framework.Assert;
 
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 /**
  * <p>
@@ -27,6 +26,12 @@ import java.util.List;
  */
 public abstract class IndexableListAdapter<K extends Comparable<K>, E> extends BaseExpandableListAdapter implements SectionIndexer {
 
+    private static final String PRECONDITION_NULL_LIST =
+        "Cannot instantiate this adapter with a null list of sections.";
+
+    private static final String PRECONDITION_NULL_MAP =
+        "Cannot instantiate this adapter with a null map of sections.";
+
     private List<IndexableList<K, E>> mSections;
 
     private Indexer<K, E> mIndexer;
@@ -37,8 +42,23 @@ public abstract class IndexableListAdapter<K extends Comparable<K>, E> extends B
      *                 where each indexable list represents a section.
      */
     public IndexableListAdapter(List<IndexableList<K, E>> sections) {
+        Assert.assertTrue(PRECONDITION_NULL_LIST, sections != null);
+
         mSections = sections;
         mIndexer = new Indexer<K, E>(sections);
+    }
+
+    /**
+     * Instantiates this adapter with the given {@link Map} of sections. The given map will be converted
+     * to a two-dimensional list that is suitable for use with this adapter.
+     * @param sections Map of sections for this adapter, with each key representing a section and that key's associated
+     *                 collection representing the items for that section.
+     */
+    public IndexableListAdapter(Map<K, Collection<E>> sections) {
+        Assert.assertTrue(PRECONDITION_NULL_MAP, sections != null);
+
+        mSections = convertToList(sections);
+        mIndexer = new Indexer<K, E>(mSections);
     }
 
     @Override
@@ -103,6 +123,34 @@ public abstract class IndexableListAdapter<K extends Comparable<K>, E> extends B
         return mSections.isEmpty();
     }
 
+    /**
+     * Converts the given sections {@link Map} to a {@link List} of {@link IndexableList}. Each indexable list
+     * created will use the key's toString() method as that list's label.
+     * @param sections Sections to convert.
+     * @return List of indexable lists converted from the given map.
+     */
+    private List<IndexableList<K, E>> convertToList(Map<K, Collection<E>> sections) {
+        Set<K> keys = sections.keySet();
+        List<IndexableList<K, E>> sectionsList = new ArrayList<IndexableList<K, E>>(keys.size());
+
+        for (K sectionKey : keys) {
+            Collection<E> sectionItems = sections.get(sectionKey);
+
+            IndexableList<K, E> section =
+                new IndexableList<K, E>(sectionKey, sectionKey.toString(), sectionItems.size());
+            section.addAll(sectionItems);
+
+            sectionsList.add(section);
+        }
+
+        return sectionsList;
+    }
+
+    /**
+     * {@link SectionIndexer} implementation that handles creating the proper section tracking information.
+     * @param <K> Type of object sections are indexable by.
+     * @param <E> Type of object each section contains.
+     */
     private static class Indexer<K extends Comparable<K>, E> implements SectionIndexer {
 
         private static final String TAG = "IndexableListAdapter.Indexer";

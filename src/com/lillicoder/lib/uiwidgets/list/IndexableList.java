@@ -23,7 +23,7 @@ public class IndexableList<K extends Comparable<K>, E> implements Indexable<K>, 
     private CharSequence mLabel;
 
     /**
-     * Instantiates this list with the given key {@link K} and label {@link CharSequence}.
+     * Instantiates this list with the given key and label {@link CharSequence}.
      * @param key Index key for this list.
      * @param label Label for this list.
      */
@@ -35,7 +35,7 @@ public class IndexableList<K extends Comparable<K>, E> implements Indexable<K>, 
     }
 
     /**
-     * Instantiates this list with the given key {@link K}, label {@link CharSequence} and initial capacity.
+     * Instantiates this list with the given key, label {@link CharSequence} and initial capacity.
      * @param key Index key for this list.
      * @param label Label for this list.
      * @param capacity Initial capacity for this list.
