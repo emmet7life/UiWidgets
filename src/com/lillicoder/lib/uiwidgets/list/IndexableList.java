@@ -8,7 +8,7 @@ import java.util.*;
  * </p>
  *
  * <p>
- *     This list implementation supports any arbitrary index key key and
+ *     This list implementation supports any arbitrary index key and
  *     any arbitrary list item type. The index key type must implement
  *     {@link Comparable} to allow for sorting operations.
  * </p>
@@ -22,11 +22,29 @@ public class IndexableList<K extends Comparable<K>, E> implements Indexable<K>, 
     private K mKey;
     private CharSequence mLabel;
 
+    /**
+     * Instantiates this list with the given key {@link K} and label {@link CharSequence}.
+     * @param key Index key for this list.
+     * @param label Label for this list.
+     */
     public IndexableList(K key, CharSequence label) {
         mKey = key;
         mLabel = label;
 
         mItems = new ArrayList<E>();
+    }
+
+    /**
+     * Instantiates this list with the given key {@link K}, label {@link CharSequence} and initial capacity.
+     * @param key Index key for this list.
+     * @param label Label for this list.
+     * @param capacity Initial capacity for this list.
+     */
+    public IndexableList(K key, CharSequence label, int capacity) {
+        mKey = key;
+        mLabel = label;
+
+        mItems = new ArrayList<E>(capacity);
     }
 
     @Override
