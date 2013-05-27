@@ -10,7 +10,7 @@ import java.util.*;
  * <p>
  *     This list implementation supports any arbitrary index key and
  *     any arbitrary list item type. The index key type must implement
- *     {@link Comparable} to allow for sorting operations.
+ *     {@link Comparable} to allow for indexing operations.
  * </p>
  * @param <K> Type of object this list is indexable by.
  * @param <E> Type of object this list contains.
